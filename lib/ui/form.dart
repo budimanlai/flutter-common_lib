@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:common_lib/styles/styles.dart';
+import 'package:common_lib/styles/color.dart';
 
 class Form {
   static Widget textFormField(
@@ -70,7 +71,7 @@ class Form {
     return Container(
       width: double.infinity,
       height: height ?? 7,
-      color: color ?? color,
+      color: color ?? ColorStyle.base,
     );
   }
 
