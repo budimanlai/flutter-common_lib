@@ -1,7 +1,8 @@
 name: common_lib
-description: A new Flutter package project.
+description: A common class or function will used in my flutter project
 version: 0.0.1
-homepage:
+author: Budiman Lai <budiman.lai@gmail.com>
+homepage: https://github.com/budimanlai/flutter-common_lib
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
