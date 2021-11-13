@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:common_lib/extensions/color.dart';
 
 class ColorStyle {
@@ -19,20 +18,18 @@ class ColorStyle {
   static Color mediumDark = Color(0xff646464);
   static Color dark = Color(0xff323232);
 
-  static loadFromJson(String jsonString) {
-    final obj = json.decode(jsonString);
-
-    if (obj['primary_base']) { primaryBase = (obj['prinary_base'] as String).toColor(); }
-    if (obj['primary_light']) { primaryLight = (obj['primary_light'] as String).toColor(); }
-    if (obj['primary_dark']) { primaryDark = (obj['primary_dark'] as String).toColor(); }
-    if (obj['secondarya_base']) { secondaryaBase = (obj['secondarya_base'] as String).toColor(); }
-    if (obj['secondarya_light']) { secondaryaLight = (obj['secondary_alight'] as String).toColor(); }
-    if (obj['secondarya_dark']) { secondaryaDark = (obj['secondarya_dark'] as String).toColor(); }
-    if (obj['secondaryb_dark']) { secondarybBase = (obj['secondaryb_dark'] as String).toColor(); }
-    if (obj['secondaryb_light']) { secondarybLight = (obj['secondaryb_light'] as String).toColor(); }
-    if (obj['light']) { light = (obj['light'] as String).toColor(); }
-    if (obj['base']) { base = (obj['base'] as String).toColor(); }
-    if (obj['medium_dark']) { mediumDark = (obj['medium_dark'] as String).toColor(); }
-    if (obj['dark']) { dark = (obj['dark'] as String).toColor(); }
+  static loadFromJson(Map<String, dynamic> jsonObject) {
+    if (jsonObject.containsKey('primary_base')) { primaryBase = (jsonObject['primary_base'] as String).toColor(); }
+    if (jsonObject.containsKey('primary_light')) { primaryLight = (jsonObject['primary_light'] as String).toColor(); }
+    if (jsonObject.containsKey('primary_dark')) { primaryDark = (jsonObject['primary_dark'] as String).toColor(); }
+    if (jsonObject.containsKey('secondarya_base')) { secondaryaBase = (jsonObject['secondarya_base'] as String).toColor(); }
+    if (jsonObject.containsKey('secondarya_light')) { secondaryaLight = (jsonObject['secondary_alight'] as String).toColor(); }
+    if (jsonObject.containsKey('secondarya_dark')) { secondaryaDark = (jsonObject['secondarya_dark'] as String).toColor(); }
+    if (jsonObject.containsKey('secondaryb_dark')) { secondarybBase = (jsonObject['secondaryb_dark'] as String).toColor(); }
+    if (jsonObject.containsKey('secondaryb_light')) { secondarybLight = (jsonObject['secondaryb_light'] as String).toColor(); }
+    if (jsonObject.containsKey('light')) { light = (jsonObject['light'] as String).toColor(); }
+    if (jsonObject.containsKey('base')) { base = (jsonObject['base'] as String).toColor(); }
+    if (jsonObject.containsKey('medium_dark')) { mediumDark = (jsonObject['medium_dark'] as String).toColor(); }
+    if (jsonObject.containsKey('dark')) { dark = (jsonObject['dark'] as String).toColor(); }
   }
 }
