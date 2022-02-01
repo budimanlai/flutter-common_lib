@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:common_lib/extensions/color.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
 
 class ColorStyle {
   static Color primaryBase = Color(0xffdc192d);
@@ -17,6 +19,12 @@ class ColorStyle {
   static Color base = Color(0xffb4b4b4);
   static Color mediumDark = Color(0xff646464);
   static Color dark = Color(0xff323232);
+
+  static fromJsonFile(String path) async {
+    final String response = await rootBundle.loadString(path);
+    final Map<String, dynamic> json = jsonDecode(response);
+    loadFromJson(json);
+  }
 
   static loadFromJson(Map<String, dynamic> jsonObject) {
     if (jsonObject.containsKey('primary_base')) { primaryBase = (jsonObject['primary_base'] as String).toColor(); }
