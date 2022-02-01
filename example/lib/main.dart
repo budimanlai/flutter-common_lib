@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:common_lib/ui/form.dart' as MyForm;
+import 'package:common_lib/ui/ui.dart' as MyUI;
 import 'package:common_lib/styles/color.dart';
 import 'package:common_lib/extensions/color.dart';
 
 void main() {
   Map<String, dynamic> jsonObject = {
-    "primary_base": Colors.green.toHex()
+    "primary_base": Colors.black.toHex(leadingHashSign: true)
   };
 
   ColorStyle.loadFromJson(jsonObject);
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             children: <Widget>[
-              MyForm.Form.textFormField(title: "Username", hint: "Ini Hint")
+              MyUI.Form.textFormField(title: "Username", hint: "Ini Hint")
             ],
           ),
         ),
