@@ -6,7 +6,7 @@ class ApiResponse {
   dynamic data;
 
   ApiResponse.fromJson(Map<String, dynamic> resp)
-      : success = resp["status"] == 0,
-        message = resp["message"],
+      : success = resp["success"],
+        message = resp["message"] == null ? "" : resp["message"],
         data = resp["data"];
 }
