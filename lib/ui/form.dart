@@ -15,7 +15,9 @@ class Form {
       Function(String)? onFieldSubmitted,
       Function()? onTap,
       Function(String? value)? validator,
-      Function(String? value)? onSaved}) {
+      Function(String? value)? onSaved,
+      Function(String? value)? onChanged
+      }) {
     return Container(
       margin: EdgeInsets.only(bottom: 20),
       child: Column(
@@ -55,6 +57,11 @@ class Form {
             onSaved: (v) {
               if (onSaved != null) {
                 onSaved(v);
+              }
+            },
+            onChanged: (v) {
+              if (onChanged != null) {
+                onChanged(v);
               }
             },
             decoration: InputDecoration(hintText: hint, suffixIcon: suffix),
