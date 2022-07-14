@@ -4,3 +4,5 @@ import 'package:common_lib/styles/color.dart';
 
 part 'form.dart';
 part 'button.dart';
+part 'form/text_field.dart';
+part 'form/password_field.dart';

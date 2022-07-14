@@ -1,5 +1,5 @@
+import 'package:example/form.dart';
 import 'package:flutter/material.dart';
-import 'package:common_lib/ui/ui.dart' as MyUI;
 import 'package:common_lib/styles/color.dart';
 import 'package:common_lib/extensions/color.dart';
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Common Lib Example'),
     );
   }
 }
@@ -35,23 +35,37 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Widget addItem(String title, Function()? onTap) {
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      color: Colors.amberAccent,
+      child: ListTile(
+        title: Text(title),
+        onTap: onTap,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              MyUI.Form.textFormField(title: "Username", hint: "Ini Hint")
-            ],
-          ),
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
-      )
-    );
+        body: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: ListView(children: [
+            addItem("Form", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FormPage(),
+                ),
+              );
+            }),
+            addItem("Other", () => null)
+          ]),
+        )));
   }
 }

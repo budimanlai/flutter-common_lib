@@ -21,15 +21,8 @@ class ApiClient {
 
   String _generateJWT(String body) {
     final header = "eyJhbGciOiAiSFMyNTYiLCJ0eXAiOiAiSldUIn0";
-    final timestamp = 1643733515; //DateTime.now().millisecondsSinceEpoch ~/ 1000).toInt();
+    final timestamp = DateTime.now().microsecondsSinceEpoch / 1000;
 
-/*
-payload = {
-    iat: iat,
-    iss: sKey,
-    sid: sid,
-};
-*/
     Map<String, dynamic> payload = {
       "iat": timestamp,
       "iss": _apiKey,
