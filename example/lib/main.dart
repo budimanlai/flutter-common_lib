@@ -1,4 +1,4 @@
-import 'package:example/form.dart';
+import 'package:example/form/form.dart';
 import 'package:flutter/material.dart';
 import 'package:common_lib/styles/color.dart';
 import 'package:common_lib/extensions/color.dart';

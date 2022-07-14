@@ -13,6 +13,7 @@ class Button {
               if (onPressed != null) {onPressed()}
             },
         child: Text(label),
+        
         style: ElevatedButton.styleFrom(
           shape: shape,
             primary: backgroundColor != null
@@ -31,6 +32,7 @@ class Button {
   }) {
     return normal(
       label: label,
+      textColor: textColor,
       backgroundColor: backgroundColor,
       shape: StadiumBorder(),
       onPressed: onPressed,
