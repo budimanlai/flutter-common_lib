@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 extension EmailValidator on String {
   bool isValidEmail() {
     return RegExp(
@@ -16,5 +18,13 @@ extension EmailValidator on String {
 
   bool isNumeric() {
     return double.tryParse(this) != null;
+  }
+
+  String toDefaultFormatDate(String fromFormat) {
+    DateTime parseDate = new DateFormat(fromFormat).parse(this);
+    var inputDate = DateTime.parse(parseDate.toString());
+    var outputFormat = DateFormat("yyyy-MM-dd");
+
+    return outputFormat.format(inputDate);
   }
 }

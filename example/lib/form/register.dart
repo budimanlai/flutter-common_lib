@@ -129,6 +129,12 @@ class _RegisterPageState extends State<RegisterPage> {
                     title: "Tanggal Lahir",
                     controller: _dobController,
                     dateFormat: "dd/MMM/yyyy",
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Tanggal Lahir tidak boleh kosong";
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     width: double.infinity,
@@ -142,7 +148,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               "handphone":
                                   _handphoneController.text.normalizePhone(),
                               "repeat_password": _rePasswordController.text,
-                              "alamat": _alamatController.text
+                              "alamat": _alamatController.text,
+                              "tanggal_lahir": _dobController.text.toDefaultFormatDate("dd/MMM/yyyy")
                             };
                             print(data);
                             // If the form is valid, display a snackbar. In the real world,
