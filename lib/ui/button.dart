@@ -15,11 +15,9 @@ class Button {
         child: Text(label),
         
         style: ElevatedButton.styleFrom(
-          shape: shape,
-            primary: backgroundColor != null
+          foregroundColor: textColor != null ? textColor : Colors.white, shape: shape, backgroundColor: backgroundColor != null
                 ? backgroundColor
-                : ColorStyle.primaryBase,
-            onPrimary: textColor != null ? textColor : Colors.white
+                : ColorStyle.primaryBase
               ),
         );
   }

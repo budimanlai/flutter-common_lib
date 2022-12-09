@@ -5,20 +5,20 @@ class Style {
   // Button Style
   static ButtonStyle capsuleButton({Color? color}) {
     return ElevatedButton.styleFrom(
-        primary: color ?? ColorStyle.primaryBase,
+        backgroundColor: color ?? ColorStyle.primaryBase,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)));
   }
 
   static ButtonStyle capsuleButtonSecondaryA() {
     return ElevatedButton.styleFrom(
-      primary: ColorStyle.secondaryaBase,
+      backgroundColor: ColorStyle.secondaryaBase,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
     );
   }
 
   static ButtonStyle flatButtonWhite() {
     return ElevatedButton.styleFrom(
-      primary: Colors.white,
+      backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
           side: BorderSide(width: 1, style: BorderStyle.solid),
           borderRadius: BorderRadius.circular(5)),
@@ -27,8 +27,7 @@ class Style {
 
   static ButtonStyle flatButtonGrey() {
     return ElevatedButton.styleFrom(
-      primary: ColorStyle.light,
-      onPrimary: ColorStyle.dark,
+      foregroundColor: ColorStyle.dark, backgroundColor: ColorStyle.light,
       textStyle: TextStyle(fontWeight: FontWeight.bold),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     );
