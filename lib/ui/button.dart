@@ -42,6 +42,7 @@ class Button {
     Color? backgroundColorDisabled,
     Color? textColorDisabled,
     bool? disabled = false,
+    double? height = 43,
     Function()? onPressed,
   }) {
     Color? _tc = textColor == null ? ColorStyle.buttonTextPrimary : textColor;
@@ -56,15 +57,18 @@ class Button {
           : backgroundColorDisabled;
     }
 
+    double rSize = height! / 2;
+
     return ElevatedButton(
         onPressed: !disabled ? () => {
           if (onPressed != null) {onPressed()}
         } : null,
         style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all<Size>(Size(0, height)),
             backgroundColor: MaterialStateProperty.all<Color>(_bc),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0)))),
+                    borderRadius: BorderRadius.circular(rSize)))),
         child: Text(label, style: TextStyle(color: _tc)));
   }
 
