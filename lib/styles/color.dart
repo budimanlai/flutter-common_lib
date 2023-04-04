@@ -19,6 +19,12 @@ class ColorStyle {
   static Color mediumDark = Color(0xff646464);
   static Color dark = Color(0xff323232);
 
+  // UI
+  static Color buttonTextPrimary = Color.fromRGBO(255, 255, 255, 1);
+  static Color buttonBgPrimary = Color.fromRGBO(35, 64, 147, 1);
+  static Color buttonTextPrimaryDisabled = Color(0x23409380);
+  static Color buttonBgPrimaryDisabled = Color.fromRGBO(35, 64, 147, 0.1);
+
   static fromJsonFile(String path) async {
     final String response = await rootBundle.loadString(path);
     final Map<String, dynamic> json = jsonDecode(response);
@@ -38,5 +44,9 @@ class ColorStyle {
     if (jsonObject.containsKey('base')) { base = (jsonObject['base'] as String).toColor(); }
     if (jsonObject.containsKey('medium_dark')) { mediumDark = (jsonObject['medium_dark'] as String).toColor(); }
     if (jsonObject.containsKey('dark')) { dark = (jsonObject['dark'] as String).toColor(); }
+
+    // UI
+    if (jsonObject.containsKey('button_text_primary_disabled')) { buttonTextPrimaryDisabled = (jsonObject['button_text_primary_disabled'] as String).toColor(); }
+    if (jsonObject.containsKey('button_bg_primary_disabled')) { buttonBgPrimaryDisabled = (jsonObject['button_bg_primary_disabled'] as String).toColor(); }
   }
 }
