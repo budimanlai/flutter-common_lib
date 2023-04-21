@@ -5,9 +5,14 @@ class ApiClient {
   static late String _authKey;
   static late String _token = "";
   static late String _baseURL;
+  static late String _issuer;
 
   static setBaseUrl(String url) {
     _baseURL = url;
+  }
+
+  static setIssuerBy(String issuer) {
+    _issuer = issuer;
   }
 
   static setApiKey(String key, String auth) {
@@ -21,21 +26,19 @@ class ApiClient {
 
   String _generateJWT(String body) {
     final header = "eyJhbGciOiAiSFMyNTYiLCJ0eXAiOiAiSldUIn0";
-    final timestamp = DateTime.now().microsecondsSinceEpoch / 1000;
+    final timestamp = (DateTime.now().millisecondsSinceEpoch / 1000).floor();
 
     Map<String, dynamic> payload = {
+      "sub": _apiKey,
       "iat": timestamp,
-      "iss": _apiKey,
-      "sid": _token
+      "iss": _issuer,
+      "ses": _token
     };
 
-    final sKey = _token.isEmpty
-        ? _authKey + timestamp.toString()
-        : _authKey + timestamp.toString() + _token;
+    final sKey = _apiKey + "." + timestamp.toString() + "." + _token + "." + _authKey;
     final payloadBase64 = base64Url.encode(utf8.encode(jsonEncode(payload))).replaceAll("=", "");
-    final hash256 = sha256.convert(utf8.encode(sKey)).toString();
-    final hash2564 = base64Url.encode(utf8.encode(hash256)).toString();
-    final hmacSha256 = Hmac(sha256, utf8.encode(hash2564));
+    final hash256 = sha256.convert(utf8.encode(sKey));
+    final hmacSha256 = Hmac(sha256, hash256.bytes);
     final signature =
         hmacSha256.convert(utf8.encode(header + "." + payloadBase64));
     final sign64 =
@@ -50,7 +53,7 @@ class ApiClient {
     var client = HttpClient();
 
     print("URL: " + apiURL.toString());
-    print("Params: " + params.toString());
+    print("Request: " + params.toString());
 
     return client.openUrl(method, apiURL).then((HttpClientRequest request) {
       final jsonBody = jsonEncode(params);
@@ -65,13 +68,16 @@ class ApiClient {
       return request.close();
     }).then((response) async {
       var responseString = await utf8.decoder.bind(response).join();
-      log(responseString);
+      
       Map<String, dynamic> result = json.decode(responseString);
       var resp = ApiResponse.fromJson(result);
       if (response.statusCode == 200) {
         if (!resp.success) {
           throw Exception(resp.message);
         }
+
+        print("response: $responseString");
+
         return resp;
       } else {
         print("Error: " + resp.message);
